@@ -1,8 +1,13 @@
+import { Server } from "./presentation/server";
 
 
-interface hola {
-    name: string;
-}
+( async () => {
+    main()
+})();
 
+function main () {
+    const server = new Server()
+    server.start()
+};
 
-console.log('Hola desde app.ts')
+// all lo de express va en la capa de presentacion
