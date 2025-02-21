@@ -1,18 +1,24 @@
-import { Router } from "express";
+import { Router } from 'express';
+
+import { TodoRoutes } from './todos/routes';
+
+
+
 
 export class AppRoutes {
 
 
-    static get routes(): Router {
+  static get routes(): Router {
 
-        const router = Router();
+    const router = Router();
 
-        router.get('/api/todos', )
+    router.use('/api/todos', TodoRoutes.routes );
 
-        return router;
 
-    };
 
-};
+    return router;
+  }
 
+
+}
 // definimos las rutas y cual es su controlador. No tiene logica implementada
