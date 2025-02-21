@@ -10,26 +10,29 @@ interface Options {
 
 export class Server {
 
+  // Declaracion de variables
   private app = express();
   private readonly port: number;
   private readonly publicPath: string;
   private readonly routes: Router;
 
+  // Inicializacion de variables
   constructor(options: Options) {
     const { port, routes, public_path = 'public' } = options;
     this.port = port;
     this.publicPath = public_path;
     this.routes = routes;
-  }
+  };
 
   
   
   async start() {
     
 
-    //* Middlewares
-    this.app.use( express.json() ); // raw
-    this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded
+    //* Middlewares: cualquier peticion que pase por el server pasa por el middleware
+    // Si viene el body lo serializa a un JSON
+    this.app.use( express.json() ) // raw
+    this.app.use( express.urlencoded({ extended: true }) ) // x-www-form-urlencoded
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );

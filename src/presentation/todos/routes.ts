@@ -13,6 +13,9 @@ export class TodoRoutes {
 
     router.get('/', todoController.getTodos );
     router.get('/:id', todoController.getTodoById );
+
+    router.post( '/', todoController.createTodo );
+    router.put( '/:id', todoController.updateTodo );
     
 
 
@@ -23,3 +26,4 @@ export class TodoRoutes {
 }
 
 // La ruta que manda el Middleware es el punto de entrada
+// Para hacer post necesito el body de la peticion
