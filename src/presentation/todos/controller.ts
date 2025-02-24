@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
 const todos = [
-  { id: 1, text: 'Buy milk', createdAt: new Date() },
-  { id: 2, text: 'Buy bread', createdAt: null },
-  { id: 3, text: 'Buy butter', createdAt: new Date() },
+  { id: 1, text: 'Buy milk', completedAt: new Date() },
+  { id: 2, text: 'Buy bread', completedAt: null },
+  { id: 3, text: 'Buy butter', completedAt: new Date() },
 ];
 
 
@@ -41,7 +41,7 @@ export class TodosController {
     const newTodo = {
       id: todos.length + 1,
       text: text,
-      createdAt: null
+      completedAt: null
     }
 
     todos.push(newTodo);
@@ -60,17 +60,34 @@ export class TodosController {
     const todo = todos.find(todo => todo.id === id);
     if (!todo) return res.status(404).json({ error: `TODO with id ${id} not found` });
 
-    const { text } = req.body;
-    if (!text) return res.status(400).json({ error: 'Text property is required' })
+    const { text, completedAt } = req.body;
 
-    todo.text = text;
-  // ! objetos PASAN POR REFERENCIA, no deberiamos hacerlo
+    // El text del todo pasa a ser el enviado en el body
+    todo.text = text || todo.text;
+
+  ( completedAt === 'null') 
+    ? todo.completedAt = null
+    : todo.completedAt = new Date( completedAt || todo.completedAt )
+
 
     res.json( todo )
 
-
-
   };
+
+  //DELETE
+  public deleteTodo = (req: Request, res: Response) => {
+
+    const id = +req.params.id;
+
+    const todo = todos.find(todo => todo.id === id);
+
+    if ( !todo ) return res.status(404).json({error: `TODO with id ${id} not found`});
+
+    todos.splice( todos.indexOf(todo), 1 );
+
+    res.json( todo )
+    
+  }
 
 };
 

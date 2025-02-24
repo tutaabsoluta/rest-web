@@ -1,7 +1,7 @@
 import { Router } from 'express';
-
 import { TodoRoutes } from './todos/routes';
 
+// ROUTER: define los endpoints y delaga la logica a los controllers
 
 
 
