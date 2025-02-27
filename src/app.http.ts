@@ -25,6 +25,8 @@ const server = http.createServer((req, res) => {
     const responseContent = fs.readFileSync(`./public${req.url}`, 'utf-8')
     res.end(responseContent)
 
+    const todos = [];
+
 })
 
 const port = 8080;
