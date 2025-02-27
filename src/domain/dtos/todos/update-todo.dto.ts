@@ -20,6 +20,7 @@ export class UpdateTodoDto {
 
 
 
+    // Validamos los datos antes de devolver la instancia con la data
     static create(props: { [key: string]: any }): [string?, UpdateTodoDto?] {
         const { id, text, completedAt } = props;
         let newCompletedAt = completedAt;
@@ -35,7 +36,6 @@ export class UpdateTodoDto {
                 return ['CompletedAt must be a valid date', undefined]
             }
         }
-
 
         return [undefined, new UpdateTodoDto( id, text, newCompletedAt )];
     }
