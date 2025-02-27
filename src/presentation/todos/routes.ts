@@ -25,5 +25,3 @@ export class TodoRoutes {
 
 }
 
-// La ruta que manda el Middleware es el punto de entrada
-// Para hacer post necesito el body de la peticion
